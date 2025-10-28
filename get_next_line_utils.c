@@ -6,7 +6,7 @@
 /*   By: cvorley <cvorley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 18:38:45 by cvorley           #+#    #+#             */
-/*   Updated: 2025/10/28 12:27:13 by cvorley          ###   ########.fr       */
+/*   Updated: 2025/10/28 12:51:12 by cvorley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,17 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	s1len;
 	size_t	s2len;
 	char	*jstr;
 
+	if(!s1)
+	{
+		s1 = (char *) malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
 	if (!s1 || !s2)
 		return (NULL);
 	s1len = ft_strlen(s1);
@@ -73,5 +78,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memcpy(jstr, s1, s1len);
 	ft_memcpy(jstr + s1len, s2, s2len);
 	jstr[s1len + s2len] = '\0';
+	free (s1);
 	return (jstr);
 }
