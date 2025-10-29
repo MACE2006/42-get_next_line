@@ -14,12 +14,16 @@
 # define GET_NEXT_LINE_H
 
 //headers
-#include <stdlib.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <unistd.h>
 
 //main functions
 char	*get_next_line(int fd);
 char	*ft_get_buffer(char	*buffer, int fd);
+char	*ft_get_line(char *buffer);
+char	*ft_get_new_buffer(char *buffer);
 
 //util functions
 char	*ft_strchr(const char *s, int c);
