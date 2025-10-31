@@ -6,7 +6,7 @@
 /*   By: cvorley <cvorley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 18:38:54 by cvorley           #+#    #+#             */
-/*   Updated: 2025/10/28 12:51:25 by cvorley          ###   ########.fr       */
+/*   Updated: 2025/10/31 19:49:43 by cvorley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@
 char	*get_next_line(int fd);
 char	*ft_get_buffer(char	*buffer, int fd);
 char	*ft_get_line(char *buffer);
-char	*ft_get_new_buffer(char *buffer);
+void	*ft_get_new_buffer(char *buffer);
+char	*free_join(char *buffer, char *next_buff);
 
 //util functions
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(const char *str);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+void	*ft_calloc(size_t n, size_t size);
 
 #endif
