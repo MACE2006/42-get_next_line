@@ -6,7 +6,7 @@
 /*   By: cvorley <cvorley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 18:38:27 by cvorley           #+#    #+#             */
-/*   Updated: 2025/10/28 13:11:29 by cvorley          ###   ########.fr       */
+/*   Updated: 2025/10/31 10:26:16 by cvorley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ char	*ft_get_line(char	*buffer)
 char	*ft_get_new_buffer(char *buffer)
 {
 	char	*new_buffer;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
@@ -101,6 +101,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_get_line(buffer);
 	buffer = ft_get_new_buffer(buffer);
+	if (!line[0])
+		line = NULL;
 	return (line);
 }
 

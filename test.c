@@ -6,7 +6,7 @@
 /*   By: cvorley <cvorley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 18:44:23 by cvorley           #+#    #+#             */
-/*   Updated: 2025/10/27 19:02:49 by cvorley          ###   ########.fr       */
+/*   Updated: 2025/10/31 10:26:34 by cvorley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	main(void)
 {
 	int		fd;
-	char *line;
+	char	*line;
 	fd = open("test.txt", O_RDONLY);
 	if (fd == -1)
 	{
