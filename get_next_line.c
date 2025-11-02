@@ -14,7 +14,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#define BUFFER_SIZE 1000000
 
 char *free_join(char *buffer, char *next_buff) {
   char *tmp;
@@ -82,7 +81,7 @@ void *ft_get_new_buffer(char *buffer) {
   line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
   i++;
   j = 0;
-  while (!buffer[i])
+  while (buffer[i])
     line[j++] = buffer[i++];
   free(buffer);
   return (line);
@@ -93,21 +92,23 @@ char *get_next_line(int fd) {
   char *line;
 
   if (fd < 0 || BUFFER_SIZE <= 0)
-    return (0);
+    return (NULL);
   buffer = ft_get_buffer(buffer, fd);
   if (!buffer)
     return (NULL);
   line = ft_get_line(buffer);
   buffer = ft_get_new_buffer(buffer);
+  if (!buffer)
+    buffer = NULL;
   return (line);
 }
 
-int main(int argc, char **argv) {
-  int fd;
-  char *line;
-  fd = open(argv[1], O_RDONLY);
-  line = get_next_line(fd);
-  printf("%s", line);
-  free(line);
-  (void)argc;
-}
+//int main(int argc, char **argv) {
+//  int fd;
+//  char *line;
+//  fd = open(argv[1], O_RDONLY);
+//  line = get_next_line(fd);
+//  printf("%s", line);
+//  free(line);
+//  (void)argc;
+//}
