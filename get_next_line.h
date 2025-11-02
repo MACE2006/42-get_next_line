@@ -27,10 +27,10 @@ void	*ft_get_new_buffer(char *buffer);
 char	*free_join(char *buffer, char *next_buff);
 
 //util functions
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(const char *str);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-void	*ft_calloc(size_t n, size_t size);
+char	*ft_strchr(const char *string, int searchedChar );
+char	*ft_strjoin(char const *s1, char const *s2);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t elementCount, size_t elementSize);
+size_t	ft_strlen(const char *theString);
 
 #endif
