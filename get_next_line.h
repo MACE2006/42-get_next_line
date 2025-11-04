@@ -21,10 +21,8 @@
 
 //main functions
 char	*get_next_line(int fd);
-char	*ft_get_buffer(char	*buffer, int fd);
-char	*ft_get_line(char *buffer);
-void	*ft_get_new_buffer(char *buffer);
-char	*free_join(char *buffer, char *next_buff);
+char	*get_line(char *buffer);
+void	shift_buffer(char *buffer);
 
 //util functions
 char	*ft_strchr(const char *string, int searchedChar );
