@@ -17,14 +17,25 @@
 
 #define BUFFER_SIZE 10
 
-static char	*read_to_stash(int fd, char *stash)
+static char	*append(char *stash, char *buf)
 {
-	char	*buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	int		bytes = 1;
 	char	*tmp;
 
+	tmp = ft_strjoin(stash ? stash : "", buf);
+	free(stash);
+	return (tmp);
+}
+
+static char	*read_to_stash(int fd, char *stash)
+{
+	char	*buf;
+	int		bytes;
+	char	*tmp;
+
+	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buf)
 		return (NULL);
+	bytes = 1;
 	while (bytes > 0 && (!stash || !ft_strchr(stash, '\n')))
 	{
 		bytes = read(fd, buf, BUFFER_SIZE);
@@ -37,14 +48,13 @@ static char	*read_to_stash(int fd, char *stash)
 		if (bytes == 0)
 			break ;
 		buf[bytes] = '\0';
-		tmp = ft_strjoin(stash ? stash : "", buf);
-		free(stash);
-		stash = tmp;
-		if (!stash)
+		tmp = append(stash, buf);
+		if (!tmp)
 		{
 			free(buf);
 			return (NULL);
 		}
+		stash = tmp;
 	}
 	free(buf);
 	return (stash);
@@ -52,14 +62,16 @@ static char	*read_to_stash(int fd, char *stash)
 
 static char	*extract_line(char *stash)
 {
-	size_t	len = 0;
+	size_t	len;
 	size_t	i;
+	char	*line;
 
+	len = 0;
 	while (stash[len] && stash[len] != '\n')
 		len++;
 	if (stash[len] == '\n')
 		len++;
-	char	*line = ft_calloc(len + 1, sizeof(char));
+	line = ft_calloc(len + 1, sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -74,11 +86,12 @@ static char	*extract_line(char *stash)
 
 static char	*update_stash(char *stash)
 {
-	char	*nl = ft_strchr(stash, '\n');
+	char	*nl;
 	size_t	len;
 	size_t	i;
 	char	*new;
 
+	nl = ft_strchr(stash, '\n');
 	if (!nl || !*(nl + 1))
 	{
 		free(stash);
